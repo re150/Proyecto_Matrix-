@@ -3,41 +3,77 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyecto_prueva;
+import java.util.Random;
 
 /**
  *
  * @author angel
  */
 public class logica {
+    Random rand = new Random();
+    int aux = 2000;     
     
-     public void matrices () {
-    int k = 0,aux = 0;     
     int[][] a  = {{3,1,-2},{0,4,2},{7,5,1}};  
     int[][] b = {{-1,0,8},{3,6,9},{0,0,3}};  
-    int[][] c =  new int[3][3];    
+    int[][] c =  new int[aux][aux]; 
+    
+     int[][] d =  new int[aux][aux]; 
+     int[][] e =  new int[aux][aux]; 
+     int[][] f =  new int[aux][aux];
+    
+     
+     public void datosMatris (int[][] x ) {
+        
+         for(int i = 0; i < aux ; i++){
+             for(int j = 0; j < aux ; j++){
+                x[i][j]= rand.nextInt(100);
+             }
+         }
+         //show(x);      
+     }
+     
+     
+     public void matrices () {
+          
+            datosMatris (d);
+            datosMatris (e);
             
-   
-    
-    
-       for(int i = 0; i < 3; i++){
-          for(int j =0; j < 3; j++){
-              while(k < 3){
-              aux = a[i][k] * b[k][j] ;//+ a[i][1] * b[1][j] + a [i][2] * b[2][j]
-               
-                 k++;
+       for(int i = 0; i < aux; i++){
+          for(int j =0; j < aux; j++){
+               int suma = 0;
+              for(int k = 0; k < aux ; k++){
+                suma += d[i][k] * e[k][j];
+               //+ a[i][1] * b[1][j] + a [i][2] * b[2][j]
+            // suma(i,j);  
               }
-              c[i][j] = aux;
-          }   
+               f[i][j] = suma;
+          } 
+          
     }
     
-       
-        for(int i = 0; i< 3; i++){
-            for(int j = 0 ; j < 3; j++){
-                System.out.println(c[i][j]);
+        
+         show(f);
+      /*  for(int i = 0; i< aux; i++){
+            for(int j = 0 ; j < aux; j++){
+                System.out.println(b[i][j]);
             }
            System.out.println("\n");
      
-        }
+        }*/
     
   }
+     
+     public void suma(int i, int j){
+         int aux1 = 0;
+         
+     }
+     public void show(int[][] x){
+       for(int i = 0; i< aux; i++){
+            for(int j = 0 ; j < aux; j++){
+                System.out.println(x[i][j]);
+            }
+           System.out.println("\n" + "matrice" + " "+ x);
+     
+        }    
+     }
 }
