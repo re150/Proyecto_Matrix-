@@ -11,8 +11,8 @@ import java.util.Random;
  */
 public class logica {
     Random rand = new Random();
-    int aux = 2000;     
-    
+    Proyecto_prueva  aux1 = new  Proyecto_prueva();
+    int aux = aux1.aux;
     int[][] a  = {{3,1,-2},{0,4,2},{7,5,1}};  
     int[][] b = {{-1,0,8},{3,6,9},{0,0,3}};  
     int[][] c =  new int[aux][aux]; 
@@ -21,7 +21,8 @@ public class logica {
      int[][] e =  new int[aux][aux]; 
      int[][] f =  new int[aux][aux];
     
-     
+   
+   
      public void datosMatris (int[][] x ) {
         
          for(int i = 0; i < aux ; i++){
@@ -34,9 +35,9 @@ public class logica {
      
      
      public void matrices () {
-          
-            datosMatris (d);
-            datosMatris (e);
+       long startTime = System.currentTimeMillis();   
+           datosMatris (d);
+           datosMatris (e);
             
        for(int i = 0; i < aux; i++){
           for(int j =0; j < aux; j++){
@@ -44,7 +45,7 @@ public class logica {
               for(int k = 0; k < aux ; k++){
                 suma += d[i][k] * e[k][j];
                //+ a[i][1] * b[1][j] + a [i][2] * b[2][j]
-            // suma(i,j);  
+              // suma(i,j);  
               }
                f[i][j] = suma;
           } 
@@ -53,6 +54,11 @@ public class logica {
     
         
          show(f);
+         
+         long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        System.out.println("Tiempo transcurrido en milisegundos en secuencias: " + elapsedTime);
+        
       /*  for(int i = 0; i< aux; i++){
             for(int j = 0 ; j < aux; j++){
                 System.out.println(b[i][j]);
@@ -63,17 +69,16 @@ public class logica {
     
   }
      
-     public void suma(int i, int j){
-         int aux1 = 0;
-         
-     }
+  
      public void show(int[][] x){
        for(int i = 0; i< aux; i++){
             for(int j = 0 ; j < aux; j++){
-                System.out.println(x[i][j]);
+                  System.out.print(x[i][j] + " " );
             }
-           System.out.println("\n" + "matrice" + " "+ x);
-     
+                  System.out.println();
         }    
      }
+     
+     
+     
 }
