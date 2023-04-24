@@ -19,7 +19,7 @@ public class Proyecto_prueva {
      * @param args the command line arguments
      */
     static Random rand = new Random();
-    static public  int aux = 700;   
+    static public  int aux = 100;   
  
     
     
@@ -63,10 +63,12 @@ public class Proyecto_prueva {
 
         // Esperar a que los threads terminen
         for (Thread thread : threads) {
+            
            try {
                thread.join();
            } catch (InterruptedException ex) {
            }
+           
         }
 
         // Imprimir resultado
@@ -75,7 +77,7 @@ public class Proyecto_prueva {
         //END TIME
         long endTime = System.currentTimeMillis();
         long AllTime = endTime - startTime;
-        System.out.println("Tiempo transcurrido en milisegundos en Thread: " + AllTime);
+        System.out.println("Tiempo transcurrido en milisegundos en concurente Thread: " + AllTime);
     
     }
     
