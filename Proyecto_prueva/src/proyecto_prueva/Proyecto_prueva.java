@@ -7,19 +7,23 @@ package proyecto_prueva;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Random;
+import java.util.concurrent.ForkJoinPool;
+
 
 
 /**
  *
  * @author angel
  */
+
 public class Proyecto_prueva {
 
     /**
      * @param args the command line arguments
      */
     static Random rand = new Random();
-    static public  int aux = 100;   
+    static public  int aux = 200;
+    static public  long Concu, sec ,Concu2;
  
     
     
@@ -27,17 +31,53 @@ public class Proyecto_prueva {
         // TODO code application logic here
        //int[][] matrixA =  new int[aux][aux];
        
-       logica  matris = new logica();
-       matris.matrices();
-       MultiThr();
+   //   logica  matris = new logica();
+     //matris.matrices();
+      //MultiThr();
      // datosMatris(matrixA);
      //   show(matrixA);
-     
-    /*int availableProcessors = Runtime.getRuntime().availableProcessors();
-    System.out.println("Número de hilos disponibles: " + availableProcessors);*/
+          
+     // Forkjoinmatrix();
+       
+       
+        //sec = matris.sec; 
+        if(Concu2 < sec) {
+            System.out.println("Concurente win " +Concu2 + " ms " + "lost Secuencial  " + sec +" ms ");
+        }else{
+            System.out.println("Secuenciasl win " + sec +" ms " + "lost Concurente " + Concu2 + " ms ");
+        } 
+      
     }
     
+    public static void Forkjoinmatrix(){
     
+     /*int availableProcessors = Runtime.getRuntime().availableProcessors();
+    System.out.println("Número de hilos disponibles: " + availableProcessors);*/
+      long startTime = System.currentTimeMillis(); 
+      
+        int[][] matrixA = new int[aux][aux];  //{{3,1,-2},{0,4,2},{7,5,1}}; //[aux][aux];
+        int[][] matrixB = new int[aux][aux];  //{{-1,0,8},{3,6,9},{0,0,3}}; // new int[aux][aux];
+        int[][] result = new int[aux][aux];
+        
+        // Inicializa las matrices con valores aleatorios
+
+               datosMatris( matrixA);
+               datosMatris (matrixB);
+         
+             
+        // Crea una instancia de ForkJoinPool y ejecuta la tarea
+        ForkJoinPool pool = new ForkJoinPool();
+        ForkjoinMatrix task = new ForkjoinMatrix(matrixA, matrixB, result, 0, aux, 0, aux);
+        
+        pool.invoke(task);
+        show(result);
+        
+       long endTime = System.currentTimeMillis();
+       long AllTime = endTime - startTime;   
+       System.out.println("Tiempo transcurrido en milisegundos en concurente Thread: " + AllTime);
+       Concu2  = AllTime;
+    
+    }
     public static void MultiThr() {
         
         long startTime = System.currentTimeMillis();
@@ -59,6 +99,7 @@ public class Proyecto_prueva {
             runnables[i] = new hilos(matrixA, matrixB, result, i);
             threads[i] = new Thread(runnables[i]);
             threads[i].start();
+            
         }
 
         // Esperar a que los threads terminen
@@ -78,7 +119,7 @@ public class Proyecto_prueva {
         long endTime = System.currentTimeMillis();
         long AllTime = endTime - startTime;
         System.out.println("Tiempo transcurrido en milisegundos en concurente Thread: " + AllTime);
-    
+         Concu  = AllTime;
     }
     
     

@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyecto_prueva;
+import View.view;
 import java.util.Random;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -11,17 +13,27 @@ import java.util.Random;
  */
 public class logica {
     Random rand = new Random();
-    Proyecto_prueva  aux1 = new  Proyecto_prueva();
-    int aux = aux1.aux;
-    int[][] a  = {{3,1,-2},{0,4,2},{7,5,1}};  
+    public long sec;
+    private JTextArea res1;
+    //Proyecto_prueva  aux1 = new  Proyecto_prueva();aux1.aux;
+   
+  
+    /*int[][] a  = {{3,1,-2},{0,4,2},{7,5,1}};  
     int[][] b = {{-1,0,8},{3,6,9},{0,0,3}};  
     int[][] c =  new int[aux][aux]; 
+    */
+    int aux ;
+    int[][] d ; 
+    int[][] e; 
+    int[][] f;
     
-     int[][] d =  new int[aux][aux]; 
-     int[][] e =  new int[aux][aux]; 
-     int[][] f =  new int[aux][aux];
-    
-   
+   public logica (int[][] matrixA, int[][] matrixB, int[][] result,int  aux1,JTextArea  res1 ){
+    this.d = matrixA;
+    this.e = matrixB;
+    this.f = result;
+    this.res1 = res1;
+    this.aux = aux1;
+   }
    
      public void datosMatris (int[][] x ) {
         
@@ -35,7 +47,8 @@ public class logica {
      
      
      public void matrices () {
-       long startTime = System.currentTimeMillis();   
+       
+         System.out.println(aux);
            datosMatris (d);
            datosMatris (e);
             
@@ -53,11 +66,9 @@ public class logica {
     }
     
         
-         show(f);
+         show(f,res1);
          
-         long endTime = System.currentTimeMillis();
-        long elapsedTime = endTime - startTime;
-        System.out.println("Tiempo transcurrido en milisegundos en secuencias: " + elapsedTime);
+        
         
       /*  for(int i = 0; i< aux; i++){
             for(int j = 0 ; j < aux; j++){
@@ -66,19 +77,19 @@ public class logica {
            System.out.println("\n");
      
         }*/
-    
+
   }
      
   
-     public void show(int[][] x){
+     public void show(int[][] x, JTextArea res1 ){
        for(int i = 0; i< aux; i++){
             for(int j = 0 ; j < aux; j++){
+                  res1.append(Integer.toString(x[i][j]) + " ");
                   System.out.print(x[i][j] + " " );
             }
                   System.out.println();
+                  res1.append("\n");
         }    
      }
-     
-     
      
 }
