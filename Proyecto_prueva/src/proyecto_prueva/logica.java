@@ -47,7 +47,7 @@ public class logica {
      
      
      public void matrices () {
-       
+       long startTime = System.currentTimeMillis();   
          System.out.println(aux);
            datosMatris (d);
            datosMatris (e);
@@ -65,6 +65,10 @@ public class logica {
           
     }
     
+          long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        System.out.println("Tiempo transcurrido en milisegundos en secuencias: " + elapsedTime);
+        sec =  elapsedTime;
         
          show(f,res1);
          
@@ -82,12 +86,13 @@ public class logica {
      
   
      public void show(int[][] x, JTextArea res1 ){
+         
        for(int i = 0; i< aux; i++){
             for(int j = 0 ; j < aux; j++){
                   res1.append(Integer.toString(x[i][j]) + " ");
-                  System.out.print(x[i][j] + " " );
+                  //System.out.print(x[i][j] + " " );
             }
-                  System.out.println();
+                //  System.out.println();
                   res1.append("\n");
         }    
      }

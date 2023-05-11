@@ -19,6 +19,7 @@ public class ForkjoinMatrix extends RecursiveAction {
     private final int endRow;
     private final int startCol;
     private final int endCol;
+    public long Concu;
     
     public ForkjoinMatrix(int[][] matrixA, int[][] matrixB, int[][] result, int startRow, int endRow, int startCol, int endCol) {
         this.matrixA = matrixA;
@@ -32,9 +33,10 @@ public class ForkjoinMatrix extends RecursiveAction {
     
     @Override
     protected void compute() {
-       
+       long startTime = System.currentTimeMillis();
         
         if (endRow - startRow <= 100 || endCol - startCol <= 100) {
+               
             // Realiza la multiplicación de matrices de manera secuencial
             for (int i = startRow; i < endRow; i++) {
                 for (int j = startCol; j < endCol; j++) {
@@ -45,6 +47,9 @@ public class ForkjoinMatrix extends RecursiveAction {
                     result[i][j] = sum;
                 }
             }
+               
+     
+            
         } else {
             // Divide la tarea en sub-tareas más pequeñas
             int midRow = (startRow + endRow) / 2;
@@ -59,5 +64,11 @@ public class ForkjoinMatrix extends RecursiveAction {
             invokeAll(tasks);
         }
           
+      long endTime = System.currentTimeMillis();
+      long AllTime = endTime - startTime;   
+      System.out.println("Tiempo transcurrido en milisegundos en concurente Thread: " + AllTime);
+      Concu = AllTime;
      }
+    
+     
 }

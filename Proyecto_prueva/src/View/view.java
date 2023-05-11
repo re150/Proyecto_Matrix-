@@ -72,6 +72,7 @@ public class view extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         f1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -160,6 +161,9 @@ public class view extends javax.swing.JFrame {
         f1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/f2.jpg"))); // NOI18N
         Panel1.add(f1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 530));
 
+        jLabel5.setText("jLabel5");
+        Panel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 440, -1, -1));
+
         getContentPane().add(Panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 530));
 
         pack();
@@ -213,8 +217,8 @@ public class view extends javax.swing.JFrame {
     }//GEN-LAST:event_BtndataActionPerformed
 
     public void SecuencialMatrix (){
-        sec = 0;
-     long startTime = System.currentTimeMillis();   
+       // sec = 0;
+     //long startTime = System.currentTimeMillis();   
         int[][] matrixA = new int[aux][aux]; //{{3,1,-2},{0,4,2},{7,5,1}}; 
         int[][] matrixB = new int[aux][aux]; //{{-1,0,8},{3,6,9},{0,0,3}};
         int[][] result = new int[aux][aux];
@@ -224,17 +228,17 @@ public class view extends javax.swing.JFrame {
          
             logica  matrix1 = new logica( matrixA, matrixB, result,aux,ResultadoM1);
             matrix1.matrices(); 
-            
+           sec = matrix1.sec;
           
             
-             long endTime = System.currentTimeMillis();
+           /*  long endTime = System.currentTimeMillis();
         long elapsedTime = endTime - startTime;
         System.out.println("Tiempo transcurrido en milisegundos en secuencias: " + elapsedTime);
-        sec =  elapsedTime;
+        sec =  elapsedTime;*/
     }
     public void Forkjoinmatrix(){
     
-      long startTime = System.currentTimeMillis(); 
+    //  long startTime = System.currentTimeMillis(); 
       
         int[][] matrixA = new int[aux][aux]; //{{3,1,-2},{0,4,2},{7,5,1}}; 
         int[][] matrixB = new int[aux][aux]; //{{-1,0,8},{3,6,9},{0,0,3}};
@@ -251,12 +255,13 @@ public class view extends javax.swing.JFrame {
         ForkjoinMatrix task = new ForkjoinMatrix(matrixA, matrixB, result, 0, aux, 0, aux);
         
         pool.invoke(task);
+       Concu =  task.Concu; 
         show(result,ResultadoM2);
         
-       long endTime = System.currentTimeMillis();
-       long AllTime = endTime - startTime;   
-       System.out.println("Tiempo transcurrido en milisegundos en concurente Thread: " + AllTime);
-       Concu = AllTime;
+       //long endTime = System.currentTimeMillis();
+     //  long AllTime = endTime - startTime;   
+       //System.out.println("Tiempo transcurrido en milisegundos en concurente Thread: " + AllTime);
+       //Concu = AllTime;
     
     }
 
@@ -268,9 +273,9 @@ public class view extends javax.swing.JFrame {
         for (int i = 0; i < aux; i++) {
             for (int j = 0; j < aux; j++) {
                 res2.append(Integer.toString(result[i][j]) + " ");
-                System.out.print(result[i][j] + " ");
+              //  System.out.print(result[i][j] + " ");
             }
-            System.out.println();
+           // System.out.println();
              res2.append("\n");
         }
     }
@@ -379,8 +384,8 @@ public class view extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane panel3;
     private javax.swing.JScrollPane panel4;
-    private javax.swing.JScrollPane panel5;
     // End of variables declaration//GEN-END:variables
 }
