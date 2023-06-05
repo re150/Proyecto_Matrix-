@@ -22,6 +22,7 @@ public class logica {
     int[][] b = {{-1,0,8},{3,6,9},{0,0,3}};  
     int[][] c =  new int[aux][aux]; 
     */
+    
     int aux ;
     int[][] d ; 
     int[][] e; 
@@ -49,8 +50,8 @@ public class logica {
      public void matrices () {
        long startTime = System.currentTimeMillis();   
          System.out.println(aux);
-           datosMatris (d);
-           datosMatris (e);
+         /*  datosMatris (d);
+          datosMatris (e);*/
             
        for(int i = 0; i < aux; i++){
           for(int j =0; j < aux; j++){
@@ -65,9 +66,9 @@ public class logica {
           
     }
     
-          long endTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis();
         long elapsedTime = endTime - startTime;
-        System.out.println("Tiempo transcurrido en milisegundos en secuencias: " + elapsedTime);
+        System.out.println("Tiempo transcurrido en milisegundos en secuenciask: " + elapsedTime);
         sec =  elapsedTime;
         
          show(f,res1);

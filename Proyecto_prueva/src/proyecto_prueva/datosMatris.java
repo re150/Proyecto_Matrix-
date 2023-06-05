@@ -4,8 +4,8 @@
  */
 package proyecto_prueva;
 
-import static proyecto_prueva.Proyecto_prueva.aux;
-import static proyecto_prueva.Proyecto_prueva.rand;
+import static proyecto_prueva.Proyecto_Prueba.aux;
+import static proyecto_prueva.Proyecto_Prueba.rand;
 
 /**
  *

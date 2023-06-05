@@ -14,6 +14,7 @@ public class hilos  implements Runnable {
     private int[][] matrixB;
     private int[][] result;
     private int row;
+    public long Concu;
     
     public hilos (int[][] matrix1, int[][] matrix2, int[][] result, int row) {
         this.matrixA = matrix1;
@@ -24,7 +25,7 @@ public class hilos  implements Runnable {
   
     @Override
     public void run () {
-        
+        long startTime = System.currentTimeMillis();
           for (int i = 0; i < matrixB[0].length; i++) {
             int sum = 0;
             for (int j = 0; j < matrixA[0].length; j++) {
@@ -32,7 +33,10 @@ public class hilos  implements Runnable {
             }
             result[row][i] = sum;
         }
-                
+      long endTime = System.currentTimeMillis();
+      long AllTime = endTime - startTime;   
+      System.out.println("Tiempo transcurrido en milisegundos en concurente Thread: " + AllTime);
+     Concu = AllTime;       
     }
     
     

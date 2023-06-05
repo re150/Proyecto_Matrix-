@@ -5,7 +5,7 @@
 package proyecto_prueva;
 
 import java.util.concurrent.RecursiveAction;
-import static proyecto_prueva.Proyecto_prueva.Concu2;
+import static proyecto_prueva.Proyecto_Prueba.Concu2;
 
 /**
  *
@@ -51,7 +51,7 @@ public class ForkjoinMatrix extends RecursiveAction {
      
             
         } else {
-            // Divide la tarea en sub-tareas más pequeñas
+            // Divide la tarea en sub tareas más pequeñas
             int midRow = (startRow + endRow) / 2;
             int midCol = (startCol + endCol) / 2;
             

@@ -16,13 +16,13 @@ import java.util.concurrent.ForkJoinPool;
  * @author angel
  */
 
-public class Proyecto_prueva {
+public class Proyecto_Prueba {
 
     /**
      * @param args the command line arguments
      */
     static Random rand = new Random();
-    static public  int aux = 200;
+    static public  int aux = 50;
     static public  long Concu, sec ,Concu2;
  
     
@@ -33,7 +33,7 @@ public class Proyecto_prueva {
        
    //   logica  matris = new logica();
      //matris.matrices();
-      //MultiThr();
+      MultiThr();
      // datosMatris(matrixA);
      //   show(matrixA);
           
@@ -150,13 +150,13 @@ public class Proyecto_prueva {
         try {
             thread1.join();
         } catch (InterruptedException ex) {
-            Logger.getLogger(Proyecto_prueva.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Proyecto_Prueba.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         try {
             thread2.join();
         } catch (InterruptedException ex) {
-            Logger.getLogger(Proyecto_prueva.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Proyecto_Prueba.class.getName()).log(Level.SEVERE, null, ex);
         }
           
           int[][] combina = unir(x);
