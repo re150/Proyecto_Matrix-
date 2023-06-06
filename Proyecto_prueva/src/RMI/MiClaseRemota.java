@@ -18,50 +18,95 @@ import proyecto_prueva.ForkjoinMatrix;
  * @author angel
  */
 public class MiClaseRemota extends UnicastRemoteObject implements MiInterfazRemota {
+
     public long Rmiti;
     public int[][] matrixA;
     public int[][] matrixB;
-    public int[][] matrixAux;
+    public int[][] result;
     private List<MiInterfazRemota> clients;
-  
-    
+
     public MiClaseRemota() throws RemoteException {
         clients = new ArrayList<>();
     }
-     public void registerClient( MiInterfazRemota client) throws RemoteException{
-         clients.add(client);
-         System.out.println(client);
-     }
-     
-    public void MatrixFor (int [][] matrix1 ,int [][] matrix2) throws RemoteException{
-    
+
+    public void registerClient(MiInterfazRemota client) throws RemoteException {
+        clients.add(client);
+        System.out.println(clients.size());
+        System.out.println(client);
+    }
+
+    public void MatrixFor(int[][] matrix1, int[][] matrix2) throws RemoteException {
+
         matrixA = matrix1;
         matrixB = matrix2;
-
         int rows1 = matrix1.length;
-        System.out.println(rows1);
         int cols1 = matrix1[0].length;
         int cols2 = matrix2[0].length;
-        int[][] result = new int[rows1][cols2];
+        result = new int[rows1][cols2];
 
-        // Crea una instancia de ForkJoinPool y ejecuta la tarea
-        ForkJoinPool pool = new ForkJoinPool();
-        ForkjoinMatrix task = new ForkjoinMatrix(matrix1, matrix2, result, 0, rows1, 0, cols2);
-        pool.invoke(task);
+        // Dividir la tarea en bloques y enviar a los clientes
+        int numClients = clients.size();
+        int blockSize = rows1 / numClients;
+        int startRow = 0;
+        int endRow = blockSize;
+
+        for (int i = 0; i < numClients; i++) {
+            MiInterfazRemota client = clients.get(i);
+            if (i == numClients - 1) {
+                // Último cliente, ajustar límite superior
+                endRow = rows1;
+            }
+
+            // Obtener el bloque de la matriz
+            int[][] blockA = getSubMatrix(matrixA, startRow, 0, endRow - startRow, cols1);
+            int[][] blockB = matrixB;
+
+            // Enviar el bloque al cliente para realizar la multiplicación de matrices
+            client.multiSeccion(blockA, blockB, startRow, 0, endRow, cols2);
+
+            // Actualizar los índices para el próximo bloque
+            startRow = endRow;
+            endRow += blockSize;
+        }
         
-      
+        show(result);
     }
     
      private  void show(int[][] result) {
          System.out.println("\nThread ");
       
-        for (int i = 0; i < result.length; i++) {
+        for (int i = 0; i <result.length ; i++) {
             for (int j = 0; j < result.length; j++) {
                 //res2.append(Integer.toString(result[i][j]) + " ");
-                System.out.print(result[i][j] + " ");
+               System.out.print(result[i][j] + " ");
             }
-            System.out.println();
-             //res2.append("\n");
+           System.out.println();
+           //  res2.append("\n");
         }
     }
+    public int[][] getSubMatrix(int[][] matrix, int startRow, int startCol, int numRows, int numCols) {
+        //para copiar los elementos correspondientes desde la matriz original a la submatriz
+        int[][] subMatrix = new int[numRows][numCols];
+        for (int i = 0; i < numRows; i++) {
+            System.arraycopy(matrix[startRow + i], startCol, subMatrix[i], 0, numCols);
+        }
+        return subMatrix;
+    }
+
+    public void multiSeccion(int[][] blockA, int[][] blockB, int startRow, int startCol, int endRow, int endCol) throws RemoteException {
+        int numRows = endRow - startRow;
+        int numCols = endCol - startCol;
+        int[][] blockResult = new int[numRows][numCols];
+
+        // Realizar la multiplicación de bloques utilizando Fork/Join
+        ForkJoinPool pool = new ForkJoinPool();
+        ForkjoinMatrixRMI task = new ForkjoinMatrixRMI(blockA, blockB, blockResult, 0, numRows, 0, numCols);
+        pool.invoke(task);
+
+        // Copiar el resultado del bloque a la matriz resultante
+        for (int i = 0; i < numRows; i++) {
+            System.arraycopy(blockResult[i], 0, result[startRow + i], startCol, numCols);
+        }
+    }
+     
 }

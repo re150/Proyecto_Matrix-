@@ -312,24 +312,22 @@ public class view extends javax.swing.JFrame {
 
     private void BtndataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtndataActionPerformed
         // TODO add your handling code here:
-      aux =Integer.parseInt(TextDiv.getText());
-     int[][] matrixA = new int[aux][aux]; //{{3,1,-2},{0,4,2},{7,5,1}}; 
-     int[][] matrixB = new int[aux][aux]; 
-      
+        aux = Integer.parseInt(TextDiv.getText());
+        int[][] matrixA = new int[aux][aux]; //{{3,1,-2},{0,4,2},{7,5,1}}; 
+        int[][] matrixB = new int[aux][aux];
+
         System.out.println(aux);
-      
-       
-          if(aux > 0){
-              
-       datosMatris( matrixA);
-       datosMatris (matrixB);
-       
-       matrixAux1 = matrixA;
-       matrixAux2 = matrixB;
-           }
-          else {
-           JOptionPane.showMessageDialog(null, "data in matrix cannot be zero or less");
-          }
+
+        if (aux > 0) {
+
+            datosMatris(matrixA);
+            datosMatris(matrixB);
+
+            matrixAux1 = matrixA;
+            matrixAux2 = matrixB;
+        } else {
+            JOptionPane.showMessageDialog(null, "data in matrix cannot be zero or less");
+        }
     }//GEN-LAST:event_BtndataActionPerformed
 
     private void BntRMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BntRMIActionPerformed
