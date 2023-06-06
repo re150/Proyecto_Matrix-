@@ -69,7 +69,14 @@ public class ForkjoinMatrixRMI  extends RecursiveAction{
       long AllTime = endTime - startTime;   
       System.out.println("Tiempo transcurrido en milisegundos con RMI in  Thread: " + AllTime);
       RMI = AllTime;
+      TiemEND();
      }
     
+    public long TiemEND (){
+     long  Timeaux;
+      Timeaux = RMI;
+     
+     return Timeaux;
+    }
      
 }

@@ -332,36 +332,36 @@ public class view extends javax.swing.JFrame {
 
     private void BntRMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BntRMIActionPerformed
         // TODO add your handling code here:
-           
+           int [][] matrixResul;
+            ResultadoM4.setForeground(Color.yellow);
         try {
         
-            remoteMi.MatrixFor(matrixAux1 , matrixAux2);
-            
+          matrixResul  = remoteMi.MatrixFor(matrixAux1 , matrixAux2);
+         
+         show(matrixResul,ResultadoM4);
+    
+     
         } catch (Exception e) {
             System.err.println("Error send the message: " + e.toString());
         }
         
     }//GEN-LAST:event_BntRMIActionPerformed
 
-    public void RmiMatrix () {
-    }
     public void SecuencialMatrix (){
-       // sec = 0;
-     //long startTime = System.currentTimeMillis();   
+        // sec = 0;
+        //long startTime = System.currentTimeMillis();   
         int[][] matrixA = new int[aux][aux]; //{{3,1,-2},{0,4,2},{7,5,1}}; 
         int[][] matrixB = new int[aux][aux]; //{{-1,0,8},{3,6,9},{0,0,3}};
         int[][] result = new int[aux][aux];
-        
-      matrixA = matrixAux1;
-       matrixB = matrixAux2;
-          
-         
-          logica  matrix1 = new logica( matrixA, matrixB, result,aux,ResultadoM1);
-           matrix1.matrices(); 
-           sec = matrix1.sec;
-          
-            
-           /*  long endTime = System.currentTimeMillis();
+
+        matrixA = matrixAux1;
+        matrixB = matrixAux2;
+
+        logica matrix1 = new logica(matrixA, matrixB, result, aux, ResultadoM1);
+        matrix1.matrices();
+        sec = matrix1.sec;
+
+        /*  long endTime = System.currentTimeMillis();
         long elapsedTime = endTime - startTime;
         System.out.println("Tiempo transcurrido en milisegundos en secuencias: " + elapsedTime);
         sec =  elapsedTime;*/
