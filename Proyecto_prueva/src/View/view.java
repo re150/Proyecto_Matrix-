@@ -332,13 +332,20 @@ public class view extends javax.swing.JFrame {
 
     private void BntRMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BntRMIActionPerformed
         // TODO add your handling code here:
-           int [][] matrixResul;
-            ResultadoM4.setForeground(Color.yellow);
+        int[][] matrixResul;
+        long Tiempo;
+        String tiemAux;
+        ResultadoM4.setForeground(Color.yellow);
         try {
-        
-          matrixResul  = remoteMi.MatrixFor(matrixAux1 , matrixAux2);
-         
-         show(matrixResul,ResultadoM4);
+
+            matrixResul = remoteMi.MatrixFor(matrixAux1, matrixAux2);
+            Tiempo = remoteMi.TIemEnd();
+            tiemAux = Long.toString(Tiempo);
+            
+            show(matrixResul, ResultadoM4);
+            
+            TiemM3.setText(tiemAux + " Ms ");
+            TiemM3.setForeground(Color.green);
     
      
         } catch (Exception e) {

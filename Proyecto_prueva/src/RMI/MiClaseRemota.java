@@ -76,7 +76,8 @@ public class MiClaseRemota extends UnicastRemoteObject implements MiInterfazRemo
         }
         
 
-
+       tiempos.clear();
+       System.out.println(tiempos);
        
         return result;
     }
@@ -110,8 +111,31 @@ public class MiClaseRemota extends UnicastRemoteObject implements MiInterfazRemo
         }
         Rmiti = task.RMI;
         tiempos.add(Rmiti);
-        System.out.println(tiempos);
+        
+       Rmiti= MaxTIem(tiempos);
+      // System.out.println(Rmiti + "ft");
+       
+       
     }
         
-    
+     public  long MaxTIem(List<Long> tiempo) {
+
+        long max = tiempo.get(0);
+            for (int i = 1; i < tiempo.size(); i++) {
+                long currentNumber = tiempo.get(i);
+                if (currentNumber > max) {
+                    max = currentNumber;
+                }
+            }
+
+
+        return max;
+    }
+     
+      public Long TIemEnd () throws RemoteException{
+          Long tiemaux  = null;
+          tiemaux = Rmiti ;
+          return tiemaux;
+      }
+     
 }
